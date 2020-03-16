@@ -45,9 +45,8 @@ def process_images(original_image, modified_image):
 		cv2.rectangle(imageA, (x, y), (x + w, y + h), (0, 0, 255), 2)
 		cv2.rectangle(imageB, (x, y), (x + w, y + h), (0, 0, 255), 2)
 	
-	with app.app_context():
-		retval_imageA, buffer_imageA = cv2.imencode('.jpg', imageA)
-		retval_imageB, buffer_imageB = cv2.imencode('.jpg', imageB)
+	retval_imageA, buffer_imageA = cv2.imencode('.jpg', imageA)
+	retval_imageB, buffer_imageB = cv2.imencode('.jpg', imageB)
 
 	return buffer_imageA, buffer_imageB
 
@@ -86,11 +85,10 @@ def show_diff():
 	if request.method == "GET":
 		image_first = os.path.join(app.config['UPLOAD_FOLDER'], request.args.getlist('filenames')[0])
 		image_second = os.path.join(app.config['UPLOAD_FOLDER'], request.args.getlist('filenames')[1])
-		buffer_imageA, buffer_imageB = process_images(image_first, image_second)
-		with app.app_context():
-			imageA = base64.b64encode(buffer_imageA.tobytes()).decode("utf-8")
-			imageB = base64.b64encode(buffer_imageB.tobytes()).decode("utf-8")
-			images = [imageA, imageB]
+		buffer_imageA, buffer_imageB = process_images(image_first, image_second)		
+		imageA = base64.b64encode(buffer_imageA.tobytes()).decode("utf-8")
+		imageB = base64.b64encode(buffer_imageB.tobytes()).decode("utf-8")
+		images = [imageA, imageB]
 		return render_template('image_difference.html', images=images)
 	else:
 		return render_template('image_difference.html')
