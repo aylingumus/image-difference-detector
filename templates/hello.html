@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}Welcome!{% endblock %}
+
+{% block content %}
+<div class="jumbotron" style="background-color:#ffb3769c !important;">
+  <div class="container">
+    <h1>Hello, wanderer!</h1>
+    <h3>Let's compute the difference between two images!</h3>
+    <div>
+      <form action="{{ url_for('upload_image') }}" method="POST">
+        <button type="submit" class="btn btn-danger btn-lg">Do it!</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

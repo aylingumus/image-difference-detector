@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Upload Images{% endblock %}
+
+{% block content %}
+
+<div class="jumbotron" style="background-color:#ffb3769c !important;">
+  <div class="container">  
+      <h1>Upload two images</h1>
+      <hr>
+      <form action="{{ url_for('upload_image') }}" method="POST" enctype="multipart/form-data">
+        <h4>Please select two images:</h3>
+        
+        <div class="row form-group">          
+          <div class="col-md-3 custom-file">
+            <input type="file" class="custom-file-input" name="image_first" id="image-first">
+            <label class="custom-file-label" for="image_first">Select first image...</label>
+          </div>
+          <div class="col-md-3 custom-file">
+            <input type="file" class="custom-file-input" name="image_second" id="image_second">
+            <label class="custom-file-label" for="image_second">Select second image...</label>
+          </div>
+        </div>
+
+        <div class="justify-content-center">
+          <button type="submit" class="btn btn-danger btn-lg">Upload</button>
+        </div>        
+
+      </form>    
+  </div>
+</div>
+{% endblock %}
