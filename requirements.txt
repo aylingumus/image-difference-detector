@@ -2,7 +2,7 @@ click==7.1.1
 cycler==0.10.0
 decorator==4.4.2
 dominate==2.5.1
-Flask==1.1.1
+Flask==2.3.2
 Flask-Bootstrap==3.3.7.1
 imageio==2.8.0
 imutils==0.5.3
